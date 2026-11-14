@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>🧴 Дерматология</title>
+<style>
+:root{--bg:#f6f4ee;--paper:#fff;--ink:#22262b;--muted:#6b7280;--accent:#0f766e;--accent-dark:#115e59;--accent-soft:#e7f4f1;--line:#e3dfd3;--warn:#b45309;--bar:58px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 "Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,"Noto Sans",sans-serif;overflow-wrap:anywhere}
+a{color:var(--accent)}
+.topbar{position:fixed;top:0;left:0;right:0;height:var(--bar);background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;padding:0 14px;z-index:30}
+.brand{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.search{display:flex;align-items:center;gap:6px;flex:1;max-width:520px;margin-left:auto;min-width:0}
+.search input{flex:1;min-width:0;height:38px;padding:0 12px;border:1px solid var(--line);border-radius:10px;font:inherit;font-size:15px;background:#fff}
+.search input:focus{outline:2px solid var(--accent);outline-offset:1px}
+#qcount{font-size:13px;color:var(--muted);min-width:44px;text-align:center;white-space:nowrap}
+.btn{height:38px;min-width:38px;padding:0 12px;border:1px solid var(--line);background:#fff;border-radius:10px;font:inherit;font-size:14px;cursor:pointer;color:var(--ink)}
+.btn:hover{border-color:var(--accent);color:var(--accent-dark)}
+.sidebar{position:fixed;top:var(--bar);bottom:0;left:0;width:310px;max-width:86vw;background:#fff;border-right:1px solid var(--line);overflow-y:auto;padding:12px 8px 60px;z-index:20;transform:translateX(-102%);transition:transform .22s ease}
+body.nav-open .sidebar{transform:none;box-shadow:0 0 30px rgba(0,0,0,.18)}
+.backdrop{position:fixed;inset:var(--bar) 0 0 0;background:rgba(0,0,0,.28);z-index:15;display:none}
+body.nav-open .backdrop{display:block}
+.sidebar ul{list-style:none;margin:0;padding:0}
+.sidebar ul ul{margin:2px 0 8px 12px;border-left:1px solid var(--line)}
+.sidebar a{display:block;padding:5px 10px;border-radius:8px;color:var(--ink);text-decoration:none;font-size:14.5px;line-height:1.35}
+.sidebar a.l2{font-weight:600;margin-top:4px}
+.sidebar a.l3{font-size:13.5px;color:#444b55}
+.sidebar a:hover{background:var(--accent-soft)}
+.sidebar a.active{background:var(--accent-soft);color:var(--accent-dark);font-weight:600}
+.layout{padding:calc(var(--bar) + 22px) 16px 90px}
+main{max-width:780px;margin:0 auto}
+@media (min-width:1100px){.sidebar{transform:none}.layout{margin-left:310px}.menu-btn{display:none}.backdrop{display:none!important}body.nav-open .sidebar{box-shadow:none}}
+@media (max-width:640px){.brand{display:none}body{font-size:16.5px}.lesson,.toc-card{padding-left:14px!important;padding-right:14px!important}}
+:target{scroll-margin-top:calc(var(--bar) + 14px)}
+h1,h2,h3,h4{scroll-margin-top:calc(var(--bar) + 14px);line-height:1.3}
+h1{font-size:2.1rem;margin:.2em 0 .4em;letter-spacing:-.01em}
+h2{font-size:1.5rem;margin:.55em 0;color:var(--accent-dark)}
+h3{font-size:1.17rem;margin:.6em 0;color:#1f4e3d}
+.toc-card,.lesson{background:var(--paper);border:1px solid var(--line);border-radius:14px;margin:20px 0;padding:6px 24px 14px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.lesson{border-left:5px solid var(--accent)}
+.toc-card ul{margin:.2em 0;padding-left:1.25em}
+.toc-card>nav>ul>li{margin:.45em 0;font-weight:600}
+.toc-card ul ul{font-weight:400;margin:.15em 0 .55em;padding-left:1.3em;columns:1}
+.toc-card li{line-height:1.5;margin:.15em 0}
+a.wikilink{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
+a.wikilink:hover{border-bottom-color:currentColor}
+.unresolved{color:var(--warn);border-bottom:1px dashed var(--warn);cursor:help}
+summary{list-style:none;display:flex;align-items:center;gap:.5em;cursor:pointer;user-select:text}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸";flex:none;color:var(--accent);font-size:.95rem;transition:transform .15s;width:1em}
+details[open]>summary::before{transform:rotate(90deg)}
+summary h2,summary h3{margin-top:.5em;margin-bottom:.5em}
+.sub{border-top:1px dashed var(--line);margin-top:6px}
+.body>p,.body>ol{margin:.55em 0}
+p{margin:.55em 0}
+ol{margin:.4em 0;padding-left:1.7em}
+ol li::marker{color:var(--accent);font-weight:700}
+blockquote{margin:.9em 0;padding:.55em 1em;border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0}
+blockquote p{margin:0}
+hr{border:0;border-top:1px solid var(--line);margin:1.1em 0}
+.back-wrap{text-align:right;margin:.6em 0 .2em;font-size:13px}
+.back{color:var(--muted);text-decoration:none}
+.back:hover{color:var(--accent-dark);text-decoration:underline}
+mark.hit{background:#fde68a;color:inherit;border-radius:3px;padding:0 1px}
+mark.hit.cur{background:#fb923c}
+.flash{animation:flash 1.7s ease-out}
+@keyframes flash{0%,40%{background:#fef3c7;box-shadow:0 0 0 6px #fef3c7}100%{background:transparent;box-shadow:0 0 0 6px transparent}}
+.fab{position:fixed;right:16px;bottom:16px;display:flex;flex-direction:column;gap:8px;z-index:25;opacity:0;pointer-events:none;transition:opacity .2s}
+.fab.show{opacity:1;pointer-events:auto}
+.fab a{display:flex;align-items:center;justify-content:center;min-height:42px;padding:0 14px;border-radius:21px;background:var(--accent);color:#fff;text-decoration:none;font-size:14px;box-shadow:0 3px 10px rgba(0,0,0,.2)}
+.fab a:hover{background:var(--accent-dark)}
+@media print{.topbar,.sidebar,.fab,.back-wrap,.backdrop{display:none!important}.layout{margin:0!important;padding:0!important}.lesson,.toc-card{box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <button id="menu" class="btn menu-btn" type="button" aria-label="Открыть оглавление">☰</button>
+  <div class="brand">🧴 Дерматология</div>
+  <div class="search">
+    <input id="q" type="search" placeholder="Поиск по тексту…  ( / )" aria-label="Поиск по тексту" autocomplete="off">
+    <span id="qcount" aria-live="polite"></span>
+    <button id="qprev" class="btn" type="button" title="Предыдущее совпадение" aria-label="Предыдущее совпадение">↑</button>
+    <button id="qnext" class="btn" type="button" title="Следующее совпадение" aria-label="Следующее совпадение">↓</button>
+  </div>
+  <button id="toggleall" class="btn" type="button">Свернуть всё</button>
+</div>
+<nav class="sidebar" id="sidebar" aria-label="Навигация по разделам"><ul><li><a class="l2" data-id="toc" href="#toc">📑 Содержание</a></li><li><a class="l2" data-id="s3" href="#s3">Урок 1 — Как читать состав косметики</a><ul><li><a class="l3" data-id="s4" href="#s4">Увлажнители — HUMECTANTS</a></li><li><a class="l3" data-id="s5" href="#s5">Эмоленты и окклюзивы</a></li><li><a class="l3" data-id="s6" href="#s6">ПАВы — очищающие вещества</a></li><li><a class="l3" data-id="s7" href="#s7">Керамиды</a></li><li><a class="l3" data-id="s8" href="#s8">Ниацинамид: свойства и применение</a></li><li><a class="l3" data-id="s9" href="#s9">Салициловая кислота</a></li><li><a class="l3" data-id="s10" href="#s10">Консерванты</a></li><li><a class="l3" data-id="s11" href="#s11">Отдушки</a></li><li><a class="l3" data-id="s12" href="#s12">Как распознавать маркетинговые обещания</a></li><li><a class="l3" data-id="s13" href="#s13">Пять вопросов при анализе состава</a></li><li><a class="l3" data-id="s14" href="#s14">Главное правило оценки состава</a></li></ul></li><li><a class="l2" data-id="s15" href="#s15">Урок 2 — Как устроена косметика на самом деле</a><ul><li><a class="l3" data-id="s16" href="#s16">1. У косметики есть «скелет»</a></li><li><a class="l3" data-id="s17" href="#s17">2. Актив ≠ основа</a></li><li><a class="l3" data-id="s18" href="#s18">Эмульгаторы</a></li><li><a class="l3" data-id="s19" href="#s19">Загустители</a></li><li><a class="l3" data-id="s20" href="#s20">pH — одна из самых важных вещей</a></li><li><a class="l3" data-id="s21" href="#s21">Почему концентрация — не единственный фактор</a></li><li><a class="l3" data-id="s22" href="#s22">Leave-on vs Wash-off</a></li><li><a class="l3" data-id="s23" href="#s23">Почему нельзя использовать много активов одновременно</a></li><li><a class="l3" data-id="s24" href="#s24">Раздражение ≠ эффективность</a></li><li><a class="l3" data-id="s25" href="#s25">Как профессионально анализировать продукт</a></li></ul></li><li><a class="l2" data-id="s26" href="#s26">Урок 3 — Кислоты: AHA, BHA и PHA</a><ul><li><a class="l3" data-id="s27" href="#s27">1. Что вообще делают кислоты?</a></li><li><a class="l3" data-id="s28" href="#s28">2. AHA</a></li><li><a class="l3" data-id="s29" href="#s29">3. BHA</a></li><li><a class="l3" data-id="s30" href="#s30">4. Что значит «кислота 10%»?</a></li><li><a class="l3" data-id="s31" href="#s31">5. PHA</a></li><li><a class="l3" data-id="s32" href="#s32">6. AHA vs BHA</a></li><li><a class="l3" data-id="s33" href="#s33">7. Пилинги</a></li><li><a class="l3" data-id="s34" href="#s34">8. Кислоты и кожа</a></li><li><a class="l3" data-id="s35" href="#s35">9. Почему SPF особенно важен</a></li><li><a class="l3" data-id="s36" href="#s36">10. Самая частая ошибка при использовании кислот</a></li></ul></li><li><a class="l2" data-id="s37" href="#s37">Урок 4 — Ретиноиды</a><ul><li><a class="l3" data-id="s38" href="#s38">Ретинол</a></li><li><a class="l3" data-id="s39" href="#s39">Ретиналь</a></li><li><a class="l3" data-id="s40" href="#s40">Адапален</a></li><li><a class="l3" data-id="s41" href="#s41">Третиноин</a></li><li><a class="l3" data-id="s42" href="#s42">Что делают ретиноиды?</a></li><li><a class="l3" data-id="s43" href="#s43">Побочные эффекты и раздражение</a></li><li><a class="l3" data-id="s44" href="#s44">Почему не стоит сочетать много активов</a></li><li><a class="l3" data-id="s45" href="#s45">Главный принцип разумного ухода</a></li><li><a class="l3" data-id="s46" href="#s46">Разбор учебного задания</a></li></ul></li><li><a class="l2" data-id="s47" href="#s47">Урок 5 — Три очень известных актива</a><ul><li><a class="l3" data-id="s48" href="#s48">Ниацинамид: свойства и применение</a></li><li><a class="l3" data-id="s49" href="#s49">Азелаиновая кислота</a></li><li><a class="l3" data-id="s50" href="#s50">Витамин C</a></li><li><a class="l3" data-id="s51" href="#s51">Почему форма вещества важна?</a></li><li><a class="l3" data-id="s52" href="#s52">Как сочетать знания об активах</a></li></ul></li><li><a class="l2" data-id="s53" href="#s53">Урок 7 — SPF и солнцезащита</a><ul><li><a class="l3" data-id="s54" href="#s54">1. Что такое UV?</a></li><li><a class="l3" data-id="s55" href="#s55">2. Что такое SPF?</a></li><li><a class="l3" data-id="s56" href="#s56">3. Почему многие выбирают SPF 50?</a></li><li><a class="l3" data-id="s57" href="#s57">4. SPF защищает только от UVB?</a></li><li><a class="l3" data-id="s58" href="#s58">5. Что такое PA++++?</a></li><li><a class="l3" data-id="s59" href="#s59">6. Солнцезащитные фильтры</a></li><li><a class="l3" data-id="s60" href="#s60">7. Почему SPF нужно наносить достаточно?</a></li><li><a class="l3" data-id="s61" href="#s61">8. Нужно ли обновлять SPF?</a></li><li><a class="l3" data-id="s62" href="#s62">9. SPF — не только летом</a></li><li><a class="l3" data-id="s63" href="#s63">Как читать маркировку SPF</a></li></ul></li><li><a class="l2" data-id="s64" href="#s64">Уровень 2 — Как работает кожа</a><ul><li><a class="l3" data-id="s65" href="#s65">1. Кожа — это не просто «оболочка»</a></li><li><a class="l3" data-id="s66" href="#s66">2. Что такое кожный барьер</a></li><li><a class="l3" data-id="s67" href="#s67">3. Что такое себум</a></li><li><a class="l3" data-id="s68" href="#s68">4. Как появляется прыщ</a></li><li><a class="l3" data-id="s69" href="#s69">5. Комедоны</a></li><li><a class="l3" data-id="s70" href="#s70">6. Воспалительные элементы</a></li><li><a class="l3" data-id="s71" href="#s71">7. Почему нельзя просто «высушить всё»</a></li><li><a class="l3" data-id="s72" href="#s72">8. pH кожи</a></li><li><a class="l3" data-id="s73" href="#s73">9. Микробиом кожи</a></li><li><a class="l3" data-id="s74" href="#s74">10. Что такое воспаление</a></li><li><a class="l3" data-id="s75" href="#s75">11. Постакне — это не одна вещь</a></li><li><a class="l3" data-id="s76" href="#s76">12. Почему SPF важен при постакне</a></li><li><a class="l3" data-id="s77" href="#s77">Что нужно запомнить</a></li></ul></li></ul></nav>
+<div class="backdrop" id="backdrop"></div>
+<div class="layout"><main id="content">
+<header class="doc-head"><h1 id="top">🧴 Дерматология</h1></header>
+<section class="toc-card"><h2 id="toc">📑 Содержание</h2>
+<nav class="toc" aria-label="Содержание">
+<ul><li><a class="wikilink" href="#s3">Урок 1 — Как читать состав косметики</a><ul><li><a class="wikilink" href="#s4">Увлажнители — HUMECTANTS</a></li><li><a class="wikilink" href="#s5">Эмоленты и окклюзивы</a></li><li><a class="wikilink" href="#s6">ПАВы — очищающие вещества</a></li><li><a class="wikilink" href="#s7">Керамиды</a></li><li><a class="wikilink" href="#s8">Ниацинамид: свойства и применение</a></li><li><a class="wikilink" href="#s9">Салициловая кислота</a></li><li><a class="wikilink" href="#s10">Консерванты</a></li><li><a class="wikilink" href="#s11">Отдушки</a></li><li><a class="wikilink" href="#s12">Как распознавать маркетинговые обещания</a></li><li><a class="wikilink" href="#s13">Пять вопросов при анализе состава</a></li><li><a class="wikilink" href="#s14">Главное правило оценки состава</a></li></ul></li><li><a class="wikilink" href="#s15">Урок 2 — Как устроена косметика на самом деле</a><ul><li><a class="wikilink" href="#s16">1. У косметики есть «скелет»</a></li><li><a class="wikilink" href="#s17">2. Актив ≠ основа</a></li><li><a class="wikilink" href="#s18">Эмульгаторы</a></li><li><a class="wikilink" href="#s19">Загустители</a></li><li><a class="wikilink" href="#s20">pH — одна из самых важных вещей</a></li><li><a class="wikilink" href="#s21">Почему концентрация — не единственный фактор</a></li><li><a class="wikilink" href="#s22">Leave-on vs Wash-off</a></li><li><a class="wikilink" href="#s23">Почему нельзя использовать много активов одновременно</a></li><li><a class="wikilink" href="#s24">Раздражение ≠ эффективность</a></li><li><a class="wikilink" href="#s25">Как профессионально анализировать продукт</a></li></ul></li><li><a class="wikilink" href="#s26">Урок 3 — Кислоты: AHA, BHA и PHA</a><ul><li><a class="wikilink" href="#s27">1. Что вообще делают кислоты?</a></li><li><a class="wikilink" href="#s28">2. AHA</a></li><li><a class="wikilink" href="#s29">3. BHA</a></li><li><a class="wikilink" href="#s30">4. Что значит «кислота 10%»?</a></li><li><a class="wikilink" href="#s31">5. PHA</a></li><li><a class="wikilink" href="#s32">6. AHA vs BHA</a></li><li><a class="wikilink" href="#s33">7. Пилинги</a></li><li><a class="wikilink" href="#s34">8. Кислоты и кожа</a></li><li><a class="wikilink" href="#s35">9. Почему SPF особенно важен</a></li><li><a class="wikilink" href="#s36">10. Самая частая ошибка при использовании кислот</a></li></ul></li><li><a class="wikilink" href="#s37">Урок 4 — Ретиноиды</a><ul><li><a class="wikilink" href="#s38">Ретинол</a></li><li><a class="wikilink" href="#s39">Ретиналь</a></li><li><a class="wikilink" href="#s40">Адапален</a></li><li><a class="wikilink" href="#s41">Третиноин</a></li><li><a class="wikilink" href="#s42">Что делают ретиноиды?</a></li><li><a class="wikilink" href="#s43">Побочные эффекты и раздражение</a></li><li><a class="wikilink" href="#s44">Почему не стоит сочетать много активов</a></li><li><a class="wikilink" href="#s45">Главный принцип разумного ухода</a></li><li><a class="wikilink" href="#s46">Разбор учебного задания</a></li></ul></li><li><a class="wikilink" href="#s47">Урок 5 — Три очень известных актива</a><ul><li><a class="wikilink" href="#s48">Ниацинамид: свойства и применение</a></li><li><a class="wikilink" href="#s49">Азелаиновая кислота</a></li><li><a class="wikilink" href="#s50">Витамин C</a></li><li><a class="wikilink" href="#s51">Почему форма вещества важна?</a></li><li><a class="wikilink" href="#s52">Как сочетать знания об активах</a></li></ul></li><li><a class="wikilink" href="#s53">Урок 7 — SPF и солнцезащита</a><ul><li><a class="wikilink" href="#s54">1. Что такое UV?</a></li><li><a class="wikilink" href="#s55">2. Что такое SPF?</a></li><li><a class="wikilink" href="#s56">3. Почему многие выбирают SPF 50?</a></li><li><a class="wikilink" href="#s57">4. SPF защищает только от UVB?</a></li><li><a class="wikilink" href="#s58">5. Что такое PA++++?</a></li><li><a class="wikilink" href="#s59">6. Солнцезащитные фильтры</a></li><li><a class="wikilink" href="#s60">7. Почему SPF нужно наносить достаточно?</a></li><li><a class="wikilink" href="#s61">8. Нужно ли обновлять SPF?</a></li><li><a class="wikilink" href="#s62">9. SPF — не только летом</a></li><li><a class="wikilink" href="#s63">Как читать маркировку SPF</a></li></ul></li><li><a class="wikilink" href="#s64">Уровень 2 — Как работает кожа</a><ul><li><a class="wikilink" href="#s65">1. Кожа — это не просто «оболочка»</a></li><li><a class="wikilink" href="#s66">2. Что такое кожный барьер</a></li><li><a class="wikilink" href="#s67">3. Что такое себум</a></li><li><a class="wikilink" href="#s68">4. Как появляется прыщ</a></li><li><a class="wikilink" href="#s69">5. Комедоны</a></li><li><a class="wikilink" href="#s70">6. Воспалительные элементы</a></li><li><a class="wikilink" href="#s71">7. Почему нельзя просто «высушить всё»</a></li><li><a class="wikilink" href="#s72">8. pH кожи</a></li><li><a class="wikilink" href="#s73">9. Микробиом кожи</a></li><li><a class="wikilink" href="#s74">10. Что такое воспаление</a></li><li><a class="wikilink" href="#s75">11. Постакне — это не одна вещь</a></li><li><a class="wikilink" href="#s76">12. Почему SPF важен при постакне</a></li><li><a class="wikilink" href="#s77">Что нужно запомнить</a></li></ul></li></ul>
+</nav>
+<hr>
+</section>
+<section class="lesson"><details open><summary><h2 id="s3">Урок 1 — Как читать состав косметики</h2></summary><div class="body">
+<p>INCI — это международные названия ингредиентов. Главное правило:</p>
+<blockquote><p>Ингредиенты обычно расположены от большей концентрации к меньшей, но после примерно 1% порядок уже может быть менее информативным, а некоторые компоненты могут указываться в произвольном порядке.</p></blockquote>
+<p>Например:</p>
+<p>Aqua, Glycerin, Niacinamide, Salicylic Acid, Panthenol...</p>
+<p>Уже можно многое понять.</p>
+<hr>
+<details class="sub" open><summary><h3 id="s4">Увлажнители — HUMECTANTS</h3></summary><div class="body">
+<p>Они притягивают и удерживают воду.</p>
+<p>Ищи:</p>
+<p>Glycerin</p>
+<p>Hyaluronic Acid / Sodium Hyaluronate</p>
+<p>Propanediol</p>
+<p>Butylene Glycol</p>
+<p>Betaine</p>
+<p>Panthenol</p>
+<p>Urea</p>
+<p>Glycerin</p>
+<p>Один из самых обычных и при этом реально эффективных компонентов.</p>
+<p>Если видишь его высоко в составе — хороший знак для увлажнения.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s5">Эмоленты и окклюзивы</h3></summary><div class="body">
+<p>Они помогают сделать кожу мягче и уменьшают потерю воды.</p>
+<p>Например:</p>
+<p>Squalane</p>
+<p>Dimethicone</p>
+<p>Caprylic/Capric Triglyceride</p>
+<p>Shea Butter</p>
+<p>Cetearyl Alcohol</p>
+<p>И вот здесь важный момент.</p>
+<p>Cetearyl Alcohol — НЕ плохой спирт</p>
+<p>Это жирный спирт.</p>
+<p>Он используется как эмолент и стабилизатор крема.</p>
+<p>Поэтому:</p>
+<blockquote><p>увидел Alcohol → не обязательно сразу «СПИРТ = ПЛОХО».</p></blockquote>
+<p>Есть разные спирты с совершенно разными свойствами.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s6">ПАВы — очищающие вещества</h3></summary><div class="body">
+<p>Особенно важны в умывалках.</p>
+<p>Например:</p>
+<p>Sodium Lauroyl Sarcosinate</p>
+<p>Cocamidopropyl Betaine</p>
+<p>Sodium Cocoyl Isethionate</p>
+<p>Decyl Glucoside</p>
+<p>Sodium Laureth Sulfate</p>
+<p>Они помогают смешать воду с жиром и загрязнениями, чтобы всё это смылось.</p>
+<p>А SLS/SLES — зло?</p>
+<p>Не обязательно.</p>
+<p>Это сильно упрощённый миф.</p>
+<p>Важнее вся формула, концентрация и то, насколько кожа переносит средство.</p>
+<p>Для умывалки ПАВ вообще должен быть там — иначе это будет довольно странная умывалка.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s7">Керамиды</h3></summary><div class="body">
+<p>Ищи:</p>
+<p>Ceramide NP</p>
+<p>Ceramide AP</p>
+<p>Ceramide EOP</p>
+<p>Это компоненты, связанные с липидным барьером кожи.</p>
+<p>Особенно интересны в кремах для:</p>
+<p>сухой кожи;</p>
+<p>раздражённой кожи;</p>
+<p>повреждённого барьера.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s8">Ниацинамид: свойства и применение</h3></summary><div class="body">
+<p>Niacinamide</p>
+<p>Очень популярный актив.</p>
+<p>Может помогать:</p>
+<p>контролировать себум;</p>
+<p>поддерживать кожный барьер;</p>
+<p>уменьшать воспаление;</p>
+<p>работать с постакне/неравномерным тоном.</p>
+<p>Но:</p>
+<p>10% не обязательно лучше 5%.</p>
+<p>Большая концентрация может даже раздражать некоторых людей.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s9">Салициловая кислота</h3></summary><div class="body">
+<p>Salicylic Acid</p>
+<p>Вот это уже актив, который особенно интересен при жирной коже и комедонах.</p>
+<p>Но есть нюанс:</p>
+<p>Если в составе написано:</p>
+<p>Salicylic Acid</p>
+<p>это ещё не означает автоматически, что средство мощное.</p>
+<p>Нужно учитывать:</p>
+<p>концентрацию + pH + тип продукта + сколько времени он находится на коже.</p>
+<p>Поэтому 2% BHA leave-on и умывалка с салициловой кислотой — не одно и то же.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s10">Консерванты</h3></summary><div class="body">
+<p>Без них косметика может превратиться в микробиологическую ферму 💀</p>
+<p>Можно встретить:</p>
+<p>Phenoxyethanol</p>
+<p>Ethylhexylglycerin</p>
+<p>Sodium Benzoate</p>
+<p>Potassium Sorbate</p>
+<p>Benzyl Alcohol</p>
+<p>Наличие консерванта — нормально.</p>
+<p>Не нужно искать косметику «без химии». Вся косметика состоит из химических веществ.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s11">Отдушки</h3></summary><div class="body">
+<p>Ищи:</p>
+<p>Parfum</p>
+<p>Fragrance</p>
+<p>А также отдельные ароматические компоненты:</p>
+<p>Limonene</p>
+<p>Linalool</p>
+<p>Citral</p>
+<p>Geraniol</p>
+<p>Citronellol</p>
+<p>Они не обязательно вредны, но могут раздражать чувствительную кожу.</p>
+<p>Для кожи, склонной к раздражению, часто разумнее выбирать средства без сильной отдушки.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s12">Как распознавать маркетинговые обещания</h3></summary><div class="body">
+<p>Допустим, на упаковке написано:</p>
+<blockquote><p>«NIACINAMIDE + HYALURONIC ACID + ALOE VERA ✨»</p></blockquote>
+<p>Открываем состав:</p>
+<p>Aqua, Glycerin, ... Niacinamide ... Aloe Leaf Juice ... Sodium Hyaluronate</p>
+<p>Уже смотрим где именно ингредиенты находятся.</p>
+<p>Если какой-нибудь «экстракт суперфрукта» находится почти в самом конце — вероятно, это далеко не главный компонент формулы.</p>
+<p>Но тут есть нюанс: маленькая концентрация не означает бесполезность. Некоторые активы работают в очень небольших количествах.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s13">Пять вопросов при анализе состава</h3></summary><div class="body">
+<p>Когда ты смотришь состав, задавай себе 5 вопросов:</p>
+<ol start="1"><li>Что это за продукт?</li></ol>
+<p>Умывалка? Крем? Сыворотка? SPF?</p>
+<ol start="2"><li>Какие главные действующие компоненты?</li></ol>
+<p>Например:</p>
+<p>Niacinamide<br>
+Salicylic Acid<br>
+Azelaic Acid<br>
+Panthenol</p>
+<ol start="3"><li>Где они находятся в составе?</li></ol>
+<p>Чем выше — обычно тем больше концентрация, но не всегда можно точно определить процент.</p>
+<ol start="4"><li>Что ещё делает формула?</li></ol>
+<p>Увлажнители? Эмоленты? ПАВы? Успокаивающие компоненты?</p>
+<ol start="5"><li>Есть ли потенциальные раздражители?</li></ol>
+<p>Отдушка, эфирные масла, высокие концентрации некоторых активов и т.д.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s14">Главное правило оценки состава</h3></summary><div class="body">
+<p>Нельзя оценивать косметику по одному ингредиенту.</p>
+<p>Например:</p>
+<blockquote><p>«В составе есть спирт — значит плохо».</p></blockquote>
+<p>❌ Нет.</p>
+<blockquote><p>«Есть ниацинамид — значит средство хорошее».</p></blockquote>
+<p>❌ Тоже нет.</p>
+<blockquote><p>«Нет силиконов — значит натуральное и лучше».</p></blockquote>
+<p>❌ Нет.</p>
+<p>Оценивается вся формула + концентрации + назначение продукта + кожа конкретного человека.<br>
+Погнали 😎 Продолжим именно как обучение, чтобы ты постепенно начал сам разбираться в косметике, а не просто запоминал названия банок.</p>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details></section>
+<section class="lesson"><details open><summary><h2 id="s15">Урок 2 — Как устроена косметика на самом деле</h2></summary><div class="body">
+<p>В прошлом уроке мы разобрали INCI и основные группы ингредиентов. Теперь надо понять более важную вещь:</p>
+<blockquote><p>Косметика — это не набор активов. Это формула.</p></blockquote>
+<p>Условная сыворотка может содержать 20–40 компонентов, но далеко не все они являются «активами».</p>
+<hr>
+<details class="sub" open><summary><h3 id="s16">1. У косметики есть «скелет»</h3></summary><div class="body">
+<p>Возьмём условный крем:</p>
+<p>Aqua, Glycerin, Caprylic/Capric Triglyceride, Cetearyl Alcohol, Dimethicone, Niacinamide, Ceramide NP...</p>
+<p>Что здесь происходит?</p>
+<p>🥇 Aqua</p>
+<p>Вода.</p>
+<p>Она часто стоит первой, потому что является основой водной части формулы.</p>
+<p>🥈 Glycerin</p>
+<p>Увлажнитель.</p>
+<p>Помогает удерживать воду.</p>
+<p>🥉 Caprylic/Capric Triglyceride</p>
+<p>Эмолент — делает кожу более мягкой и приятной.</p>
+<p>Cetearyl Alcohol</p>
+<p>Жирный спирт.</p>
+<p>Помогает текстуре и смягчает кожу.</p>
+<p>Dimethicone</p>
+<p>Силикон.</p>
+<p>Создаёт приятное скольжение и уменьшает потерю воды.</p>
+<p>Niacinamide</p>
+<p>А вот здесь начинается активная часть формулы.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s17">2. Актив ≠ основа</h3></summary><div class="body">
+<p>Это очень важное разделение.</p>
+<p>Условно:</p>
+<p>База:</p>
+<p>вода;</p>
+<p>растворители;</p>
+<p>увлажнители;</p>
+<p>эмоленты;</p>
+<p>загустители;</p>
+<p>эмульгаторы;</p>
+<p>консерванты.</p>
+<p>Активы:</p>
+<p>ниацинамид;</p>
+<p>салициловая кислота;</p>
+<p>азелаиновая кислота;</p>
+<p>ретиноиды;</p>
+<p>витамин C;</p>
+<p>некоторые пептиды и т.д.</p>
+<p>Причём база не менее важна.</p>
+<p>Можно сделать сыворотку с прекрасным активом, но если формула раздражает кожу — продукт будет плохим именно для тебя.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s18">Эмульгаторы</h3></summary><div class="body">
+<p>Представь:</p>
+<p>💧 вода<br>
+🛢️ масло</p>
+<p>Они не хотят нормально смешиваться.</p>
+<p>А крему нужно, чтобы они образовали стабильную смесь.</p>
+<p>Для этого используются эмульгаторы.</p>
+<p>Например:</p>
+<p>Glyceryl Stearate</p>
+<p>Cetearyl Olivate</p>
+<p>Polysorbate</p>
+<p>Lecithin</p>
+<p>Без подобных компонентов многие кремовые формулы просто разваливались бы на отдельные фазы.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s19">Загустители</h3></summary><div class="body">
+<p>Они отвечают за консистенцию.</p>
+<p>Например:</p>
+<p>Carbomer</p>
+<p>Xanthan Gum</p>
+<p>Hydroxyethylcellulose</p>
+<p>Именно благодаря им сыворотка может быть гелевой, а крем — кремовым, а не просто жидкостью.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s20">pH — одна из самых важных вещей</h3></summary><div class="body">
+<p>Вот тут начинается уже настоящая косметическая химия.</p>
+<p>pH показывает, насколько среда кислая или щелочная.</p>
+<p>Шкала примерно:</p>
+<p>0 ← кислое | 7 нейтральное | щелочное → 14</p>
+<p>Кожа сама по себе имеет слабокислую среду.</p>
+<p>Поэтому pH продукта может сильно влиять на:</p>
+<p>переносимость;</p>
+<p>эффективность некоторых активов;</p>
+<p>работу консервантов;</p>
+<p>состояние кожного барьера.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s21">Почему концентрация — не единственный фактор</h3></summary><div class="body">
+<p>Допустим, есть:</p>
+<p>Salicylic Acid 2%</p>
+<p>Наивное мышление:</p>
+<blockquote><p>«2% значит всегда одинаково».</p></blockquote>
+<p>На практике нет.</p>
+<p>На действие влияют:</p>
+<p>концентрация + pH + растворитель + формула + время контакта с кожей.</p>
+<p>Поэтому две сыворотки с одинаковыми «2% BHA» потенциально могут ощущаться и работать по-разному.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s22">Leave-on vs Wash-off</h3></summary><div class="body">
+<p>Это вообще фундаментальное различие.</p>
+<p>Wash-off</p>
+<p>Нанёс → смыл.</p>
+<p>Например:</p>
+<p>🧼 умывалка<br>
+🧴 очищающая маска</p>
+<p>Leave-on</p>
+<p>Нанёс → оставил.</p>
+<p>Например:</p>
+<p>💧 сыворотка<br>
+🧪 BHA<br>
+🧴 крем</p>
+<p>Поэтому:</p>
+<p>2% салициловой кислоты в leave-on продукте</p>
+<p>и</p>
+<p>2% салициловой кислоты в умывалке</p>
+<p>— не одно и то же по воздействию.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s23">Почему нельзя использовать много активов одновременно</h3></summary><div class="body">
+<p>Допустим, человек хочет избавиться от прыщей.</p>
+<p>Он покупает:</p>
+<p>BHA → AHA → ретиноид → витамин C → ниацинамид → энзимную пудру → пилинг.</p>
+<p>И использует всё.</p>
+<p>💀</p>
+<p>Проблема даже не обязательно в том, что каждый продукт плохой.</p>
+<p>Проблема в суммарной нагрузке.</p>
+<p>Кожа получает:</p>
+<p>отшелушивание + раздражение + изменение барьера + ещё отшелушивание.</p>
+<p>И потом человек видит:</p>
+<blockquote><p>«Почему у меня красная кожа и новые прыщи?!»</p></blockquote>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s24">Раздражение ≠ эффективность</h3></summary><div class="body">
+<p>Это очень распространённый миф:</p>
+<blockquote><p>«Если щиплет — значит работает».</p></blockquote>
+<p>❌ Нет.</p>
+<p>Жжение, сильное покраснение и шелушение не являются доказательством того, что средство эффективно.</p>
+<p>Хороший уход должен давать результат без постоянного уничтожения кожного барьера.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s25">Как профессионально анализировать продукт</h3></summary><div class="body">
+<p>Допустим, тебе показывают сыворотку:</p>
+<p>«ANTI-ACNE SUPER SERUM 🔥»</p>
+<p>Не смотри сначала на название.</p>
+<p>Смотри:</p>
+<p>Шаг 1</p>
+<p>Что это за продукт?</p>
+<p>Шаг 2</p>
+<p>Какие активы?</p>
+<p>Шаг 3</p>
+<p>В каких концентрациях?</p>
+<p>Шаг 4</p>
+<p>Какой pH, если он важен для данного актива?</p>
+<p>Шаг 5</p>
+<p>Leave-on или wash-off?</p>
+<p>Шаг 6</p>
+<p>Какая база?</p>
+<p>Шаг 7</p>
+<p>Есть ли потенциальные раздражители?</p>
+<p>Шаг 8</p>
+<p>Подходит ли это конкретно твоей коже?</p>
+<p>Вот тогда ты уже анализируешь косметику, а не покупаешь красивую банку.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details></section>
+<section class="lesson"><details open><summary><h2 id="s26">Урок 3 — Кислоты: AHA, BHA и PHA</h2></summary><div class="body">
+<p>Это одна из самых важных тем, потому что вокруг кислот огромное количество мифов.</p>
+<details class="sub" open><summary><h3 id="s27">1. Что вообще делают кислоты?</h3></summary><div class="body">
+<p>В косметике под «кислотами» обычно имеют в виду вещества, которые помогают отшелушивать роговой слой кожи и/или воздействовать на определённые процессы в коже.</p>
+<p>Но разные кислоты работают по-разному.</p>
+<p>Упрощённо:</p>
+<p>AHA → поверхность кожи<br>
+BHA → поры + поверхность<br>
+PHA → более мягкое отшелушивание</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s28">2. AHA</h3></summary><div class="body">
+<p>Alpha Hydroxy Acids — альфа-гидроксикислоты.</p>
+<p>Самые известные:</p>
+<p>Glycolic Acid — гликолевая;</p>
+<p>Lactic Acid — молочная;</p>
+<p>Mandelic Acid — миндальная.</p>
+<p>Гликолевая</p>
+<p>Самая маленькая молекула из популярных AHA → обычно проникает глубже и может быть достаточно активной.</p>
+<p>Может использоваться для:</p>
+<p>неровной текстуры;</p>
+<p>тусклой кожи;</p>
+<p>постакне;</p>
+<p>поверхностной пигментации;</p>
+<p>отшелушивания.</p>
+<p>Молочная</p>
+<p>Обычно воспринимается как более мягкая AHA.</p>
+<p>Дополнительно обладает увлажняющими свойствами.</p>
+<p>Миндальная</p>
+<p>Более крупная молекула → часто переносится мягче.</p>
+<p>Интересна для кожи, склонной к воспалениям и постакне.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s29">3. BHA</h3></summary><div class="body">
+<p>Beta Hydroxy Acid.</p>
+<p>В косметике главный представитель:</p>
+<p>Salicylic Acid — салициловая кислота</p>
+<p>И вот она особенно интересна для жирной кожи.</p>
+<p>Салициловая кислота липофильная, то есть хорошо взаимодействует с жирной средой.</p>
+<p>Поэтому она особенно полезна при:</p>
+<p>комедонах;</p>
+<p>забитых порах;</p>
+<p>чёрных точках;</p>
+<p>жирности;</p>
+<p>некоторых формах акне.</p>
+<p>Обычная домашняя концентрация leave-on BHA часто находится около 0,5–2%.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s30">4. Что значит «кислота 10%»?</h3></summary><div class="body">
+<p>Вот здесь люди часто ошибаются.</p>
+<p>10% AHA ≠ 10% BHA.</p>
+<p>Нельзя просто сравнить цифры.</p>
+<p>Разные кислоты имеют:</p>
+<p>разную химическую структуру;</p>
+<p>разную силу;</p>
+<p>разные рабочие концентрации;</p>
+<p>разный оптимальный pH;</p>
+<p>разное действие.</p>
+<p>Поэтому:</p>
+<blockquote><p>«У этой кислоты 10%, а у той 2%, значит первая в 5 раз мощнее»</p></blockquote>
+<p>❌ Так считать нельзя.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s31">5. PHA</h3></summary><div class="body">
+<p>Poly Hydroxy Acids.</p>
+<p>Например:</p>
+<p>Gluconolactone;</p>
+<p>Lactobionic Acid.</p>
+<p>Их молекулы крупнее, поэтому они обычно действуют более поверхностно и мягко.</p>
+<p>Это может быть интересно людям с чувствительной кожей.</p>
+<p>Но:</p>
+<p>мягче ≠ бесполезнее.</p>
+<p>Просто это другой инструмент.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s32">6. AHA vs BHA</h3></summary><div class="body">
+<p>Представь:</p>
+<p>AHA</p>
+<p>🧱🧱🧱🧱<br>
+Работа преимущественно с поверхностью.</p>
+<p>BHA</p>
+<p>🧱 + 🕳️<br>
+Может работать в жирной среде внутри пор.</p>
+<p>Поэтому если проблема:</p>
+<p>неровная текстура / тусклость / поверхностное постакне → чаще смотрят на AHA.</p>
+<p>комедоны / чёрные точки / жирность / забитые поры → BHA часто логичнее.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s33">7. Пилинги</h3></summary><div class="body">
+<p>Пилинг — это не отдельная разновидность кислоты.</p>
+<p>Это процедура/продукт с более выраженным химическим отшелушиванием.</p>
+<p>Например:</p>
+<p>обычный leave-on продукт:</p>
+<p>2% BHA</p>
+<p>и какой-нибудь:</p>
+<p>30% AHA-пилинг</p>
+<p>— совершенно разные по интенсивности продукты.</p>
+<p>И вот тут особенно важно не заниматься принципом:</p>
+<blockquote><p>«Чем сильнее жжёт — тем быстрее исчезнут прыщи».</p></blockquote>
+<p>Нет.</p>
+<p>Слишком агрессивное отшелушивание может вызвать раздражение и нарушить барьер.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s34">8. Кислоты и кожа</h3></summary><div class="body">
+<p>После кислоты возможны:</p>
+<p>нормально:<br>
+лёгкое покалывание у некоторых людей.</p>
+<p>не очень нормально:<br>
+сильное жжение, выраженная краснота, отёк, болезненность, длительное раздражение.</p>
+<p>Если средство регулярно оставляет ощущение «я намазал лицо кислотой из аккумулятора» — это не признак эффективности. 😂</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s35">9. Почему SPF особенно важен</h3></summary><div class="body">
+<p>Когда ты используешь отшелушивающие средства, защита от солнца становится особенно важной частью ухода.</p>
+<p>Потому что тебе мало просто уменьшить постакне — нужно ещё не провоцировать дополнительное потемнение пятен ультрафиолетом.</p>
+<p>Поэтому логика:</p>
+<p>кислота вечером → SPF утром.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s36">10. Самая частая ошибка при использовании кислот</h3></summary><div class="body">
+<p>Человек видит прыщи:</p>
+<blockquote><p>«Нужна кислота».</p></blockquote>
+<p>Потом:</p>
+<p>BHA → AHA → энзимная пудра → пилинг → скраб</p>
+<p>И думает, что занимается серьёзным уходом.</p>
+<p>На самом деле это может быть переразгон отшелушивания.</p>
+<p>Особенно тебе, учитывая, что ты раньше упоминал сразу несколько кислотных средств и пилинг, я бы не советовал строить уход по принципу «добавить ещё один актив». Лучше понимать, какую конкретно проблему решает каждый продукт.</p>
+<p>-.</p>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details></section>
+<section class="lesson"><details open><summary><h2 id="s37">Урок 4 — Ретиноиды</h2></summary><div class="body">
+<p>Теперь самое интересное.</p>
+<p>Ретиноиды — это большая группа производных витамина A. Они используются в дерматологии и косметологии уже очень давно.</p>
+<p>Основные названия, которые ты встретишь:</p>
+<p>Ретинол → ретиналь → адапален → третиноин</p>
+<p>Но это не четыре одинаковых средства.</p>
+<details class="sub" open><summary><h3 id="s38">Ретинол</h3></summary><div class="body">
+<p>Косметический ингредиент.</p>
+<p>Кожа преобразует его в более активные формы.</p>
+<p>Используется для:</p>
+<p>текстуры;</p>
+<p>постакне;</p>
+<p>признаков фотостарения;</p>
+<p>иногда для работы с акне.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s39">Ретиналь</h3></summary><div class="body">
+<p>Retinal / Retinaldehyde</p>
+<p>На один шаг ближе к активной форме, чем ретинол.</p>
+<p>Поэтому при одинаковых процентах нельзя просто сказать:</p>
+<blockquote><p>«0,1% ретинола = 0,1% ретиналя».</p></blockquote>
+<p>Нет.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s40">Адапален</h3></summary><div class="body">
+<p>Adapalene</p>
+<p>Это уже лекарственный ретиноид, специально разработанный в том числе для лечения акне.</p>
+<p>Он действует непосредственно на ретиноидные рецепторы кожи и используется в дерматологии.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s41">Третиноин</h3></summary><div class="body">
+<p>Tretinoin</p>
+<p>Ещё более активный рецептурный ретиноид.</p>
+<p>Это уже не обычная «сыворотка с ретинолом из магазина».</p>
+<p>Его применение требует медицинского подхода.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s42">Что делают ретиноиды?</h3></summary><div class="body">
+<p>У них очень интересный механизм.</p>
+<p>Они влияют на процессы, связанные с обновлением клеток и работой сальных желез и фолликулов.</p>
+<p>Поэтому ретиноиды могут использоваться при:</p>
+<p>комедонах;</p>
+<p>акне;</p>
+<p>неровной текстуре;</p>
+<p>постакне;</p>
+<p>фотостарении.</p>
+<p>Но результат обычно не появляется за три дня.</p>
+<p>Это история про недели и месяцы, а не про «намазал вечером — утром идеальная кожа».</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s43">Побочные эффекты и раздражение</h3></summary><div class="body">
+<p>Ретиноиды могут раздражать кожу.</p>
+<p>Возможны:</p>
+<p>сухость;</p>
+<p>шелушение;</p>
+<p>покраснение;</p>
+<p>чувствительность;</p>
+<p>раздражение.</p>
+<p>Поэтому человек, который уже использует кучу кислот, может очень легко получить проблему, если сверху просто добавит ретиноид.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s44">Почему не стоит сочетать много активов</h3></summary><div class="body">
+<p>Представь:</p>
+<p>Пн: AHA<br>
+Вт: BHA<br>
+Ср: пилинг<br>
+Чт: ретиноид<br>
+Пт: AHA+BHA<br>
+Сб: энзимная пудра<br>
+Вс: «отдохну» 😭</p>
+<p>Это не продвинутый уход.</p>
+<p>Это семь дней атаки на кожный барьер.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s45">Главный принцип разумного ухода</h3></summary><div class="body">
+<p>Не спрашивай:</p>
+<blockquote><p>«Какой самый мощный актив?»</p></blockquote>
+<p>Спрашивай:</p>
+<blockquote><p>«Какой минимальный набор средств даст мне нужный результат с минимальным раздражением?»</p></blockquote>
+<p>Это уже мышление человека, который реально понимает уход.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s46">Разбор учебного задания</h3></summary><div class="body">
+<p>Вот тут уже видно, что ты начинаешь думать, а не просто запоминать. Но в №2 есть важная поправка.</p>
+<p>Разбор:</p>
+<ol start="1"><li>Ретиноид — ✅<br>
+Да, особенно если речь идёт именно об акне и комедонах. И ты правильно добавил «смотря какой». Для лечения акне адапален — совсем другая история, чем косметический ретинол. BHA тоже может быть полезен, но ретиноиды имеют более сильную доказательную базу для комедонального акне.</li></ol>
+<ol start="2"><li>Салициловая — ⚠️ не совсем.<br>
+Ты рассуждал логично, но здесь ошибка в предположении:</li></ol>
+<blockquote><p>«Ретиноиды слишком мощные → значит для текстуры лучше салициловая».</p></blockquote>
+<p>Не обязательно.</p>
+<p>Для текстуры + фотостарения ретиноиды как раз являются очень хорошим инструментом. Просто это не значит, что подростку нужно самостоятельно начинать сильные ретиноиды.</p>
+<p>Салициловая в первую очередь интересна, когда есть комедоны, жирность и забитые поры.</p>
+<ol start="3"><li>Ни в коем случае — ✅🔥</li></ol>
+<p>Если кожа уже раздражена, сначала нужно привести в порядок барьер, а не продолжать добавлять активы.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details></section>
+<section class="lesson"><details open><summary><h2 id="s47">Урок 5 — Три очень известных актива</h2></summary><div class="body">
+<p>Теперь разберём:</p>
+<p>ниацинамид → азелаиновая кислота → витамин C</p>
+<p>И здесь ты увидишь, почему нельзя делить косметику на «сильную» и «слабую».</p>
+<hr>
+<details class="sub" open><summary><h3 id="s48">Ниацинамид: свойства и применение</h3></summary><div class="body">
+<p>Это форма витамина B3.</p>
+<p>Очень универсальный компонент.</p>
+<p>Может помогать:</p>
+<p>регулировать себум;</p>
+<p>поддерживать кожный барьер;</p>
+<p>уменьшать воспаление;</p>
+<p>постепенно улучшать внешний вид постакне;</p>
+<p>немного выравнивать тон кожи.</p>
+<p>А теперь миф:</p>
+<blockquote><p>«Чем больше процентов, тем лучше».</p></blockquote>
+<p>❌ Нет.</p>
+<p>10% не обязательно лучше 5%.</p>
+<p>У некоторых людей высокая концентрация вообще вызывает раздражение.</p>
+<p>Поэтому 5% ниацинамида может быть совершенно нормальным рабочим вариантом.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s49">Азелаиновая кислота</h3></summary><div class="body">
+<p>Azelaic Acid</p>
+<p>Очень интересный актив, особенно для кожи с акне.</p>
+<p>Может использоваться при:</p>
+<p>воспалительных высыпаниях;</p>
+<p>комедонах;</p>
+<p>постакне;</p>
+<p>покраснении;</p>
+<p>неровном тоне.</p>
+<p>И у неё есть интересное преимущество:</p>
+<p>она одновременно работает сразу по нескольким направлениям.</p>
+<p>Поэтому азелаиновая кислота — не просто «ещё одна кислота для отшелушивания».</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s50">Витамин C</h3></summary><div class="body">
+<p>Тут начинается отдельный мир.</p>
+<p>Под названием «витамин C» могут скрываться разные формы.</p>
+<p>Например:</p>
+<p>L-Ascorbic Acid</p>
+<p>— чистая аскорбиновая кислота.</p>
+<p>А также различные производные витамина C.</p>
+<p>Витамин C интересен прежде всего как:</p>
+<p>антиоксидант;</p>
+<p>компонент для работы с пигментацией;</p>
+<p>поддержка фотозащиты;</p>
+<p>средство для выравнивания тона.</p>
+<p>Но он не заменяет SPF.</p>
+<p>Это:</p>
+<p>витамин C + SPF</p>
+<p>а не:</p>
+<p>витамин C вместо SPF.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s51">Почему форма вещества важна?</h3></summary><div class="body">
+<p>Возьми витамин C.</p>
+<p>Условно:</p>
+<p>L-Ascorbic Acid 15%</p>
+<p>и какая-нибудь стабильная производная витамина C.</p>
+<p>Оба продукта могут называться:</p>
+<blockquote><p>«Vitamin C serum»</p></blockquote>
+<p>Но химически и по поведению они отличаются.</p>
+<p>Поэтому профессиональный разбор всегда идёт:</p>
+<p>название актива → форма → концентрация → формула → pH → стабильность → способ применения.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s52">Как сочетать знания об активах</h3></summary><div class="body">
+<p>Допустим, у человека:</p>
+<p>жирная кожа + комедоны + воспаления + постакне.</p>
+<p>У него потенциально есть:</p>
+<p>🧼 мягкое очищение<br>
+💧 увлажняющий крем<br>
+☀️ SPF<br>
+🧪 BHA<br>
+🟩 азелаиновая кислота<br>
+🟦 ниацинамид<br>
+🧬 ретиноид</p>
+<p>Но это не означает, что надо использовать всё сразу.</p>
+<p>Задача специалиста — определить:</p>
+<blockquote><p>Что действительно необходимо?</p></blockquote>
+<p>а не:</p>
+<blockquote><p>Как впихнуть все семь банок в один день? 😂</p></blockquote>
+<p>--</p>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details></section>
+<section class="lesson"><details open><summary><h2 id="s53">Урок 7 — SPF и солнцезащита</h2></summary><div class="body">
+<p>Это тема, где маркетинг особенно любит цифры.</p>
+<details class="sub" open><summary><h3 id="s54">1. Что такое UV?</h3></summary><div class="body">
+<p>Солнце испускает ультрафиолетовое излучение.</p>
+<p>Нас в основном интересуют:</p>
+<p>UVB 🔥</p>
+<p>Больше связан с:</p>
+<p>солнечными ожогами;</p>
+<p>повреждением ДНК;</p>
+<p>развитием рака кожи.</p>
+<p>Именно UVB в значительной степени определяет показатель SPF.</p>
+<p>UVA 🧬</p>
+<p>Проникает глубже и особенно связан с:</p>
+<p>фотостарением;</p>
+<p>пигментацией;</p>
+<p>хроническим повреждением кожи.</p>
+<p>Поэтому хороший солнцезащитный продукт должен защищать и от UVA, и от UVB.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s55">2. Что такое SPF?</h3></summary><div class="body">
+<p>SPF = Sun Protection Factor.</p>
+<p>Но очень важно:</p>
+<blockquote><p>SPF 50 не означает «в 50 раз сильнее SPF 1».</p></blockquote>
+<p>SPF связан прежде всего с количеством UVB-излучения, необходимым для возникновения минимальной эритемы (покраснения) на защищённой коже по сравнению с незащищённой.</p>
+<p>Упрощённо:</p>
+<p>SPF 30 блокирует около 96,7% UVB<br>
+SPF 50 — около 98% UVB</p>
+<p>То есть переход:</p>
+<p>30 → 50</p>
+<p>даёт дополнительную защиту, но не в полтора раза.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s56">3. Почему многие выбирают SPF 50?</h3></summary><div class="body">
+<p>Потому что в реальной жизни люди часто наносят меньше солнцезащитного средства, чем использовалось при лабораторном тестировании.</p>
+<p>Поэтому SPF 50 даёт некоторый запас.</p>
+<p>И если ты используешь SPF ежедневно, особенно при активном солнце, SPF 50+ — вполне разумный выбор.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s57">4. SPF защищает только от UVB?</h3></summary><div class="body">
+<p>Не обязательно.</p>
+<p>И вот тут нужно искать информацию о UVA-защите.</p>
+<p>На упаковке могут в встречаться:</p>
+<p>Broad Spectrum</p>
+<p>UVA</p>
+<p>PA++++</p>
+<p>UVA в кружке</p>
+<p>PPD / UVA-PF</p>
+<p>В разных странах маркировка отличается.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s58">5. Что такое PA++++?</h3></summary><div class="body">
+<p>Это японская система оценки UVA-защиты.</p>
+<p>Шкала:</p>
+<p>PA+<br>
+PA++<br>
+PA+++<br>
+PA++++</p>
+<p>Чем больше плюсов — тем выше UVA-защита.</p>
+<p>Поэтому условный:</p>
+<blockquote><p>SPF 50+ PA++++</p></blockquote>
+<p>означает:</p>
+<p>сильная защита от UVB + высокая UVA-защита.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s59">6. Солнцезащитные фильтры</h3></summary><div class="body">
+<p>Теперь уже косметическая химия.</p>
+<p>Фильтры бывают условно:</p>
+<p>Органические</p>
+<p>Раньше их часто называли «химическими».</p>
+<p>Они поглощают UV-излучение и преобразуют его в другие формы энергии.</p>
+<p>Примеры современных фильтров:</p>
+<p>Uvinul A Plus;</p>
+<p>Uvinul T 150;</p>
+<p>Tinosorb S;</p>
+<p>Tinosorb M.</p>
+<p>Неорганические</p>
+<p>Главные:</p>
+<p>Zinc Oxide<br>
+Titanium Dioxide</p>
+<p>Их часто называют «минеральными».</p>
+<p>Но не нужно думать:</p>
+<blockquote><p>химический фильтр = плохой<br>
+минеральный = хороший</p></blockquote>
+<p>❌ Это маркетинговое упрощение.</p>
+<p>Оба типа могут эффективно защищать кожу.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s60">7. Почему SPF нужно наносить достаточно?</h3></summary><div class="body">
+<p>Потому что тестирование SPF проводится с определённым количеством средства на площади кожи.</p>
+<p>Если нанести:</p>
+<p>очень тонкий слой</p>
+<p>→ фактическая защита будет значительно ниже заявленной.</p>
+<p>Поэтому проблема часто не в том, что:</p>
+<blockquote><p>«мой SPF плохой».</p></blockquote>
+<p>А в том, что:</p>
+<blockquote><p>его нанесли слишком мало.</p></blockquote>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s61">8. Нужно ли обновлять SPF?</h3></summary><div class="body">
+<p>Если ты долго находишься на улице, особенно:</p>
+<p>☀️ жара<br>
+🏖️ пляж<br>
+🏃 спорт<br>
+💦 пот/вода</p>
+<p>— солнцезащиту нужно обновлять.</p>
+<p>Причины — не только разрушение фильтров, но и то, что средство постепенно стирается и удаляется.</p>
+<p>Если ты большую часть дня сидишь внутри и не находишься у окна с интенсивным солнцем, ситуация значительно проще.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s62">9. SPF — не только летом</h3></summary><div class="body">
+<p>UV-излучение существует круглый год.</p>
+<p>Но необходимость и частота использования SPF зависят от:</p>
+<p>сезона;</p>
+<p>широты;</p>
+<p>времени суток;</p>
+<p>погоды;</p>
+<p>количества времени на улице;</p>
+<p>UV-индекса.</p>
+<p>Поэтому SPF — это не магическая баночка, которую обязательно одинаково использовать 365 дней в году независимо от условий.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s63">Как читать маркировку SPF</h3></summary><div class="body">
+<p>Например:</p>
+<p>«SPF 50+ PA++++»</p>
+<p>Ты понимаешь:</p>
+<p>50+ → очень высокая UVB-защита<br>
+PA++++ → высокая UVA-защита</p>
+<p>А не:</p>
+<blockquote><p>«50 — значит в 50 раз сильнее». 😂</p></blockquote>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details></section>
+<section class="lesson"><details open><summary><h2 id="s64">Уровень 2 — Как работает кожа</h2></summary><div class="body">
+<p>Начнём с самой базы.</p>
+<details class="sub" open><summary><h3 id="s65">1. Кожа — это не просто «оболочка»</h3></summary><div class="body">
+<p>Упрощённо её можно представить как три основных слоя:</p>
+<p>Эпидермис → дерма → гиподерма</p>
+<p>Эпидермис</p>
+<p>Самый верхний слой.</p>
+<p>Именно здесь находятся:</p>
+<p>роговой слой;</p>
+<p>клетки кожи — кератиноциты;</p>
+<p>меланоциты;</p>
+<p>иммунные клетки.</p>
+<p>Для косметологии особенно важен роговой слой (stratum corneum).</p>
+<p>Это твой главный внешний барьер.</p>
+<hr>
+<p>Дерма</p>
+<p>Глубже.</p>
+<p>Там находятся:</p>
+<p>коллаген;</p>
+<p>эластин;</p>
+<p>гиалуроновая кислота;</p>
+<p>кровеносные сосуды;</p>
+<p>нервные окончания;</p>
+<p>волосяные фолликулы;</p>
+<p>сальные и потовые железы.</p>
+<p>Именно дерма во многом отвечает за плотность, упругость и структуру кожи.</p>
+<hr>
+<p>Гиподерма</p>
+<p>Самый глубокий слой.</p>
+<p>В основном:</p>
+<p>жировая ткань;</p>
+<p>соединительная ткань;</p>
+<p>сосуды.</p>
+<p>Она участвует в теплоизоляции, запасании энергии и механической защите.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s66">2. Что такое кожный барьер</h3></summary><div class="body">
+<p>Мы уже немного это проходили, но теперь глубже.</p>
+<p>Представь:</p>
+<p>🧱 клетки кожи = кирпичи</p>
+<p>🧴 липиды между ними = цемент</p>
+<p>Главные липиды:</p>
+<p>церамиды</p>
+<p>холестерин</p>
+<p>жирные кислоты</p>
+<p>Их правильное соотношение очень важно.</p>
+<p>Барьер выполняет несколько задач:</p>
+<p>💧 Удерживает воду</p>
+<p>Не позволяет воде слишком быстро испаряться.</p>
+<p>Это связано с TEWL — transepidermal water loss.</p>
+<p>Чем сильнее нарушен барьер → тем больше воды может теряться через кожу.</p>
+<p>🦠 Защищает</p>
+<p>Барьер препятствует проникновению различных раздражителей и микроорганизмов.</p>
+<p>🧪 Регулирует реакцию кожи</p>
+<p>При повреждённом барьере кожа может начать сильнее реагировать даже на обычные средства.</p>
+<p>Например:</p>
+<blockquote><p>«Раньше эта умывалка была нормальной, а теперь от неё щиплет».</p></blockquote>
+<p>Это не обязательно означает, что умывалка внезапно стала плохой. Возможно, изменилась сама кожа.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s67">3. Что такое себум</h3></summary><div class="body">
+<p>Это кожное сало.</p>
+<p>Его производят сальные железы.</p>
+<p>Себум состоит из смеси липидов и выполняет полезные функции:</p>
+<p>уменьшает потерю воды;</p>
+<p>смазывает кожу;</p>
+<p>участвует в поддержании защитной поверхности кожи.</p>
+<p>Но его избыток может способствовать:</p>
+<p>жирный блеск → закупорка фолликула → комедон → воспаление</p>
+<p>И здесь начинается тема акне.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s68">4. Как появляется прыщ</h3></summary><div class="body">
+<p>Вот это очень важно понимать.</p>
+<p>Упрощённая схема:</p>
+<ol start="1"><li>Фолликул вырабатывает кожное сало</li></ol>
+<p>↓</p>
+<ol start="2"><li>Клетки внутри фолликула начинают неправильно/избыточно отшелушиваться</li></ol>
+<p>↓</p>
+<ol start="3"><li>Образуются кератин + себум</li></ol>
+<p>↓</p>
+<ol start="4"><li>Формируется закупорка</li></ol>
+<p>↓</p>
+<ol start="5"><li>Возникает комедон</li></ol>
+<p>↓</p>
+<ol start="6"><li>При воспалении появляется воспалительный элемент</li></ol>
+<p>Поэтому прыщи — это не просто:</p>
+<blockquote><p>«грязная кожа».</p></blockquote>
+<p>Это сложный процесс с участием себума, кератинизации, воспаления и Cutibacterium acnes.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s69">5. Комедоны</h3></summary><div class="body">
+<p>Есть два основных типа.</p>
+<p>⚫ Открытый комедон</p>
+<p>Чёрная точка.</p>
+<p>Важно:</p>
+<p>она чёрная НЕ потому, что внутри грязь.</p>
+<p>Цвет связан в основном с окислением содержимого и изменениями меланина/липидов при контакте с воздухом.</p>
+<p>⚪ Закрытый комедон</p>
+<p>Маленький бугорок под поверхностью кожи.</p>
+<p>Иногда он почти незаметен, но кожа становится неровной.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s70">6. Воспалительные элементы</h3></summary><div class="body">
+<p>Когда процесс становится воспалительным, появляются:</p>
+<p>Папула</p>
+<p>Красный воспалённый бугорок без видимого гноя.</p>
+<p>Пустула</p>
+<p>Воспалительный элемент с видимым гнойным содержимым.</p>
+<p>Узел/киста</p>
+<p>Более глубокое и серьёзное воспаление.</p>
+<p>И вот здесь особенно важно:</p>
+<p>чем глубже и сильнее воспаление, тем выше риск постакне и рубцевания.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s71">7. Почему нельзя просто «высушить всё»</h3></summary><div class="body">
+<p>Это очень распространённая ошибка.</p>
+<p>Человек видит прыщи:</p>
+<blockquote><p>«Надо обезжирить кожу максимально».</p></blockquote>
+<p>Начинает:</p>
+<p>умываться 4 раза;</p>
+<p>использовать спиртовые средства;</p>
+<p>наносить кислоты каждый день;</p>
+<p>делать пилинги;</p>
+<p>использовать подсушивающие лосьоны.</p>
+<p>Кожа раздражается.</p>
+<p>↓</p>
+<p>Барьер нарушается.</p>
+<p>↓</p>
+<p>Появляется сухость/жжение/покраснение.</p>
+<p>↓</p>
+<p>Человек думает:</p>
+<blockquote><p>«Надо ещё сильнее сушить».</p></blockquote>
+<p>И получается порочный круг.</p>
+<p>Поэтому лечение акне — это не соревнование:</p>
+<p>«Кто сильнее высушит прыщ».</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s72">8. pH кожи</h3></summary><div class="body">
+<p>Ещё одна важная тема.</p>
+<p>Поверхность кожи обычно имеет слабокислый pH, часто примерно в диапазоне 4,5–5,5, хотя значение меняется в зависимости от участка и человека.</p>
+<p>Это называют кислотной мантией.</p>
+<p>pH влияет на:</p>
+<p>активность некоторых ферментов;</p>
+<p>барьерную функцию;</p>
+<p>микробиом;</p>
+<p>переносимость некоторых средств.</p>
+<p>Но есть важный нюанс:</p>
+<p>не нужно превращать уход в фанатичное измерение pH каждого продукта.</p>
+<p>Косметическая формула — это система.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s73">9. Микробиом кожи</h3></summary><div class="body">
+<p>На коже живут огромное количество микроорганизмов.</p>
+<p>Это не значит:</p>
+<blockquote><p>«На коже бактерии = плохо».</p></blockquote>
+<p>Наоборот, нормальный микробиом является частью защиты кожи.</p>
+<p>Важны:</p>
+<p>бактерии;</p>
+<p>грибки;</p>
+<p>другие микроорганизмы;</p>
+<p>условия среды: pH, себум, влажность и т.д.</p>
+<p>Поэтому слишком агрессивное вмешательство в кожу может нарушать не только барьер, но и микробное равновесие.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s74">10. Что такое воспаление</h3></summary><div class="body">
+<p>В косметологии это одна из центральных тем.</p>
+<p>Воспаление — это защитная реакция организма.</p>
+<p>Но хроническое или чрезмерное воспаление может повреждать ткани.</p>
+<p>При акне воспаление связано с:</p>
+<p>иммунным ответом;</p>
+<p>Cutibacterium acnes;</p>
+<p>содержимым фолликула;</p>
+<p>медиаторами воспаления.</p>
+<p>Поэтому некоторые косметические компоненты работают не только через «чистку пор», но и через модуляцию воспалительных процессов.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s75">11. Постакне — это не одна вещь</h3></summary><div class="body">
+<p>Очень важное различие.</p>
+<p>После прыщей могут остаться:</p>
+<p>🔴 PIE</p>
+<p>Post-inflammatory erythema.</p>
+<p>Красные/розовые следы после воспаления.</p>
+<p>Это в основном связано с сосудистыми изменениями.</p>
+<p>🟤 PIH</p>
+<p>Post-inflammatory hyperpigmentation.</p>
+<p>Коричневые/тёмные пятна из-за повышенного образования/распределения меланина после воспаления.</p>
+<p>🕳️ Атрофические рубцы</p>
+<p>Когда ткани было повреждено настолько, что сформировалась структурная ямка.</p>
+<p>И тут уже кремами ситуацию обычно полностью не решить.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s76">12. Почему SPF важен при постакне</h3></summary><div class="body">
+<p>УФ-излучение может усиливать и поддерживать пигментацию.</p>
+<p>Поэтому условная схема:</p>
+<p>акне → воспаление → след → солнце → след становится заметнее/дольше сохраняется</p>
+<p>Поэтому SPF — это не просто:</p>
+<blockquote><p>«Средство от старения».</p></blockquote>
+<p>Он особенно полезен, когда человек работает над постакне и пигментацией.</p>
+<hr>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<details class="sub" open><summary><h3 id="s77">Что нужно запомнить</h3></summary><div class="body">
+<p>Если собрать сегодняшнюю теорию в одну систему:</p>
+<p>Кожа → имеет барьер<br>
+→ содержит себум<br>
+→ имеет микробиом<br>
+→ регулирует потерю воды<br>
+→ может воспаляться<br>
+→ постоянно обновляется.</p>
+<p>А акне:</p>
+<p>себум + нарушение процессов ороговения + закупорка фолликула + воспаление + участие Cutibacterium acnes</p>
+<p>А после акне:</p>
+<p>PIE / PIH / рубцы</p>
+<p>И уже исходя из того, какой именно процесс ты хочешь изменить, выбирается средство.</p>
+<p>Это гораздо более профессиональный подход, чем:</p>
+<blockquote><p>«У меня прыщ → какая кислота его уберёт?» 😄</p></blockquote>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details>
+<p class="back-wrap"><a class="back" href="#toc">↑ К оглавлению</a></p></div></details></section>
+</main></div>
+<div class="fab" id="fab"><a href="#toc">К оглавлению</a><a href="#top">↑ Наверх</a></div>
+<script>
+(function(){
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var body=document.body, content=$('#content');
+
+  function openParents(el){
+    var p=el.parentElement;
+    while(p){ if(p.tagName==='DETAILS') p.open=true; p=p.parentElement; }
+  }
+  function flash(el){
+    el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+    setTimeout(function(){el.classList.remove('flash')},1800);
+  }
+  function goTo(id,push){
+    if(id==='top'){
+      window.scrollTo({top:0,behavior:'smooth'});
+      if(push){try{history.pushState(null,'','#top')}catch(e){}}
+      return true;
+    }
+    var el=document.getElementById(id);
+    if(!el) return false;
+    openParents(el);
+    el.scrollIntoView({behavior:'smooth',block:'start'});
+    if(push){try{history.pushState(null,'','#'+id)}catch(e){}}
+    flash(el);
+    return true;
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href^="#"]');
+    if(!a) return;
+    var id=a.getAttribute('href').slice(1);
+    if(!id) return;
+    if(goTo(id,true)){ e.preventDefault(); body.classList.remove('nav-open'); }
+  });
+  window.addEventListener('hashchange',function(){
+    var id=decodeURIComponent(location.hash.slice(1));
+    if(id) goTo(id,false);
+  });
+  if(location.hash){
+    window.addEventListener('load',function(){
+      setTimeout(function(){goTo(decodeURIComponent(location.hash.slice(1)),false)},60);
+    });
+  }
+
+  /* боковое меню (на узких экранах) */
+  $('#menu').addEventListener('click',function(){body.classList.toggle('nav-open')});
+  $('#backdrop').addEventListener('click',function(){body.classList.remove('nav-open')});
+
+  /* свернуть / развернуть всё */
+  var tgl=$('#toggleall');
+  tgl.addEventListener('click',function(){
+    var ds=$$('details',content);
+    var anyOpen=ds.some(function(d){return d.open});
+    ds.forEach(function(d){d.open=!anyOpen});
+    tgl.textContent=anyOpen?'Развернуть всё':'Свернуть всё';
+  });
+
+  /* кнопки внизу и подсветка текущего раздела */
+  var fab=$('#fab');
+  var heads=$$('main h2[id], main h3[id]');
+  var links={};
+  $$('.sidebar a[data-id]').forEach(function(a){links[a.getAttribute('data-id')]=a});
+  var curH=null, ticking=false;
+  function spy(){
+    ticking=false;
+    fab.classList.toggle('show',window.pageYOffset>400);
+    var cur=null;
+    for(var i=0;i<heads.length;i++){
+      var h=heads[i];
+      if(!h.getClientRects().length) continue;
+      if(h.getBoundingClientRect().top<=90) cur=h; else break;
+    }
+    if(cur===curH) return;
+    if(curH&&links[curH.id]) links[curH.id].classList.remove('active');
+    if(cur&&links[cur.id]){
+      var l=links[cur.id]; l.classList.add('active');
+      var sb=$('#sidebar'), r=l.getBoundingClientRect(), s=sb.getBoundingClientRect();
+      if(r.top<s.top+10||r.bottom>s.bottom-10) sb.scrollTop+=r.top-s.top-s.height/2;
+    }
+    curH=cur;
+  }
+  window.addEventListener('scroll',function(){ if(!ticking){ticking=true;requestAnimationFrame(spy)} },{passive:true});
+  window.addEventListener('resize',spy);
+  spy();
+
+  /* поиск */
+  var q=$('#q'), cnt=$('#qcount'), hits=[], cur=-1, timer=null;
+  function clearMarks(){
+    $$('mark.hit',content).forEach(function(m){
+      var p=m.parentNode; p.replaceChild(document.createTextNode(m.textContent),m); p.normalize();
+    });
+    hits=[]; cur=-1;
+  }
+  function escRe(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
+  function step(d){
+    if(!hits.length) return;
+    if(cur>=0) hits[cur].classList.remove('cur');
+    cur=(cur+d+hits.length)%hits.length;
+    var m=hits[cur]; m.classList.add('cur'); openParents(m);
+    m.scrollIntoView({behavior:'smooth',block:'center'});
+    cnt.textContent=(cur+1)+' / '+hits.length;
+  }
+  function run(){
+    clearMarks();
+    var term=q.value.trim();
+    if(term.length<2){cnt.textContent='';return;}
+    var re=new RegExp(escRe(term),'giu');
+    var walker=document.createTreeWalker(content,NodeFilter.SHOW_TEXT,{acceptNode:function(n){
+      if(!n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+      var p=n.parentElement;
+      if(!p||p.closest('.toc-card')) return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }});
+    var nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(function(n){
+      var t=n.nodeValue, m, last=0, frag=null;
+      re.lastIndex=0;
+      while((m=re.exec(t))){
+        if(m[0].length===0){re.lastIndex++;continue;}
+        if(!frag) frag=document.createDocumentFragment();
+        if(m.index>last) frag.appendChild(document.createTextNode(t.slice(last,m.index)));
+        var mk=document.createElement('mark'); mk.className='hit'; mk.textContent=m[0];
+        frag.appendChild(mk); last=m.index+m[0].length;
+      }
+      if(frag){
+        if(last<t.length) frag.appendChild(document.createTextNode(t.slice(last)));
+        n.parentNode.replaceChild(frag,n);
+      }
+    });
+    hits=$$('mark.hit',content);
+    if(!hits.length){cnt.textContent='0';return;}
+    hits.forEach(openParents);
+    step(1);
+  }
+  q.addEventListener('input',function(){clearTimeout(timer);timer=setTimeout(run,200)});
+  q.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){e.preventDefault(); if(hits.length) step(e.shiftKey?-1:1); else run();}
+    else if(e.key==='Escape'){q.value=''; run(); q.blur();}
+  });
+  $('#qnext').addEventListener('click',function(){step(1)});
+  $('#qprev').addEventListener('click',function(){step(-1)});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='/'&&!/^(INPUT|TEXTAREA)$/.test((e.target.tagName||''))){e.preventDefault();q.focus();}
+    if(e.key==='Escape') body.classList.remove('nav-open');
+  });
+})();
+</script>
+</body>
+</html>
